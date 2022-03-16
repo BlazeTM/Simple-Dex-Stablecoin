@@ -604,17 +604,3 @@ footer {
     }
 }
 
-@media (prefers-color-scheme: dark) {
-    body {
-        --color1--: #cccccc;
-        --color2--: #ff3997;
-        --color3--: #ffffff;
-        --color4--: #ff8138;
-        --color5--: #000000;
-        --color6--: #111111;
-    }
-
-    .release-content p {
-        color: var(--color6--);
-    }
-}
