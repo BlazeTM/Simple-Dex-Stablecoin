@@ -537,7 +537,7 @@ footer {
 
     .toggleMenu.active {
         position: fixed;
-        background-image: none;
+        background-image: url("/image/close.svg");
         background-size: 25px;
     }
 
