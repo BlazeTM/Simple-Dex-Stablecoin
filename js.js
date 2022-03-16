@@ -5,7 +5,11 @@ function toggleMenu() {
     navigation.classList.toggle("active");
 }
 
-function images() {
+function darkLight() {
+    const darkLight = document.querySelector(".darkLight");
+    darkLight.classList.toggle("active");
+    var element = document.body;
+    element.classList.toggle("dark-theme");
     const twitter = document.querySelector(".twitter");
     const discord = document.querySelector(".discord");
     const tiktok = document.querySelector(".tiktok");
@@ -14,11 +18,4 @@ function images() {
     discord.src='/image/white-discord-new.svg';
     tiktok.src='/image/white-tiktok.svg';
     youtube.src='/image/white-youtube.svg';
-}
-
-function darkLight() {
-    const darkLight = document.querySelector(".darkLight");
-    darkLight.classList.toggle("active");
-    var element = document.body;
-    element.classList.toggle("dark-theme");
 }
