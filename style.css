@@ -474,6 +474,7 @@ footer {
     max-width: 50px;
     max-height: 50px;
     align-items: center;
+    padding: 2em;
 }
 
 .social-links a {
