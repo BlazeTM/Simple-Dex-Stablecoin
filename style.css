@@ -545,6 +545,7 @@ footer {
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        background-image: url("/image/menu.svg");
         max-height: 0;
         opacity: 0;
         transform-origin: top;
@@ -561,7 +562,6 @@ footer {
         margin: auto;
         max-height: 100%;
         opacity: 1;
-        background-image: url("/image/menu.svg");
         background: var(--color6--);
         transform: scale(1);
         -webkit-transform: scale(1);
