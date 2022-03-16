@@ -10,10 +10,10 @@ function images() {
     const discord = document.querySelector(".discord");
     const tiktok = document.querySelector(".tiktok");
     const youtube = document.querySelector(".youtube");
-    twitter.src='white-twitter.svg';
-    discord.src='white-discord-new.svg';
-    tiktok.src='white-tiktok.svg';
-    youtube.src='white-youtube.svg';
+    twitter.src='/image/white-twitter.svg';
+    discord.src='/image/white-discord-new.svg';
+    tiktok.src='/image/white-tiktok.svg';
+    youtube.src='/image/white-youtube.svg';
 }
 
 function darkLight() {
