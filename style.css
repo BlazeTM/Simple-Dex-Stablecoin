@@ -579,34 +579,66 @@ footer {
 
     .social-twitter {
         background-image: url(/image/black-twitter.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-size: 50px;
     }
 
     .social-youtube {
         background-image: url(/image/black-youtube.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-size: 50px;
     }
 
     .social-discord {
         background-image: url(/image/black-discord-new.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-size: 50px;
     }
 
     .social-tiktok {
         background-image: url(/image/black-tiktok.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-size: 50px;
     }
 
     .social-twitter.active {
         background-image: url(/image/white-twitter.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-size: 50px;
     }
 
     .social-youtube.active {
         background-image: url(/image/white-youtube.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-size: 50px;
     }
 
     .social-discord.active {
         background-image: url(/image/white-discord-new.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-size: 50px;
     }
 
     .social-tiktok.active {
         background-image: url(/image/white-tiktok.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-size: 50px;
     }
 
     nav ul {
