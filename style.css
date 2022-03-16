@@ -467,10 +467,13 @@ footer {
 }
 
 .social-links {
+    align-items: center;
+    gap: 2em;
+}
+.social-icons {
     max-width: 50px;
     max-height: 50px;
     align-items: center;
-    gap: 2em;
 }
 
 .social-links a {
