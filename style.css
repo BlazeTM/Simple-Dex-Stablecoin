@@ -520,7 +520,7 @@ footer {
     .toggleMenu {
         position: absolute;
         right: 5%;
-        background-image: none;
+        background-image: url("/image/menu.svg");
         background-position: center;
         background-repeat: no-repeat;
         background-size: 30px;
@@ -545,7 +545,6 @@ footer {
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        background-image: url("/image/menu.svg");
         max-height: 0;
         opacity: 0;
         transform-origin: top;
