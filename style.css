@@ -467,6 +467,8 @@ footer {
 }
 
 .social-links {
+    max-width: 50px;
+    max-height: 50px;
     align-items: center;
     gap: 2em;
 }
