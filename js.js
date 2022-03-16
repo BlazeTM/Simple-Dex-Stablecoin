@@ -1,16 +1,12 @@
 function toggleMenu() {
     const toggleMenu = document.querySelector(".toggleMenu");
     const navigation = document.querySelector(".navigation");
-    const twitter = document.querySelector("social-twitter")
-    const tiktok = document.querySelector("social-tiktok")
-    const discord = document.querySelector("social-discord")
-    const youtube = document.querySelector("social-youtube")
     toggleMenu.classList.toggle("active");
     navigation.classList.toggle("active");
-    twitter.classList.toggle("active")
-    tiktok.classList.toggle("active")
-    discord.classList.toggle("active")
-    youtube.classList.toggle("active")
+    document.getElementById("1").src="/image/white-twitter.svg";
+    document.getElementById("2").src="/image/white-discord-new.svg";
+    document.getElementById("3").src="/image/white-tiktok.svg";
+    document.getElementById("4").src="/image/white-youtube.svg";
 }
 
 function darkLight() {

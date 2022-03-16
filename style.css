@@ -470,12 +470,9 @@ footer {
     align-items: center;
     gap: 2em;
 }
-.social-discord , .social-youtube , .social-twitter , .social-tiktok {
+.social-icons {
     align-items: center;
     margin-left: 10px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 .social-links a {
@@ -575,70 +572,6 @@ footer {
         -ms-transform: scale(1);
         -o-transform: scale(1);
         z-index: 999;
-    }
-
-    .social-twitter {
-        background-image: url(/image/black-twitter.svg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-size: 50px;
-    }
-
-    .social-youtube {
-        background-image: url(/image/black-youtube.svg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-size: 50px;
-    }
-
-    .social-discord {
-        background-image: url(/image/black-discord-new.svg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-size: 50px;
-    }
-
-    .social-tiktok {
-        background-image: url(/image/black-tiktok.svg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-size: 50px;
-    }
-
-    .social-twitter.active {
-        background-image: url(/image/white-twitter.svg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-size: 50px;
-    }
-
-    .social-youtube.active {
-        background-image: url(/image/white-youtube.svg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-size: 50px;
-    }
-
-    .social-discord.active {
-        background-image: url(/image/white-discord-new.svg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-size: 50px;
-    }
-
-    .social-tiktok.active {
-        background-image: url(/image/white-tiktok.svg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-size: 50px;
     }
 
     nav ul {
