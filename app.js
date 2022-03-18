@@ -40,6 +40,6 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-function disconnect() {
-  ethereum.on('disconnect', handler: (error: ProviderRpcError) => void);
-}
+function disconnectMM() {
+  stopOnboarding();
+};
