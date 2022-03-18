@@ -9,13 +9,27 @@
     <title>DHC Mint Site</title>
 </head>
 <body>
-    <div class="container">
+    <Header class="row container"> 
+        <a href="#" class="logo">
+            logo
+        </a>
+        <div class="toggleMenu" onclick="toggleMenu();"></div>
         <nav class="navigation row">
             <ul class="row">
-                <li><button class="enableEthereumButton">Connect Wallet</button></li>
-                <h2>Account: <span class="showAccount"></span></h2>
+                <li><a target="_blank" href="https://opensea.io/">Collection</a></li>
+                <li><a target="_blank" href="#">Roadmap</a></li>
+                <li><a onclick="">Connect Wallet</a></li>
             </ul>
         </nav>
-    </div>
+    </Header>
+
+    <section class="hero row container">
+        <div>
+            <h6>Launching Soon</h6>
+            <h1>Unique NFTs Collection</h1>
+            <p>Don't miss out on the release. Join our discord to get a chance for WL spot</p>
+            <a href="#" class="hero-btn">Join Our Discord</a>
+        </div>
+    </section>
 </body>
 </html>
