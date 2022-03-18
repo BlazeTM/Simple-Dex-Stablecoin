@@ -40,6 +40,6 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-function disconnectMM() {
-  stopOnboarding();
+async function disconnectMM() {
+  new stopOnboarding();
 };
