@@ -1,8 +1,3 @@
-const TIMEOUT = 1000;
-const COLLECTION_NAME = 'DHC';
-let editions = [];
-let dots = 1;
-
 window.addEventListener('DOMContentLoaded', () => {
   const onboarding = new MetaMaskOnboarding();
   const onboardButton = document.getElementById('connectWallet');
@@ -45,3 +40,6 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+function disconnect() {
+  ethereum.on('disconnect', handler: (error: ProviderRpcError) => void);
+}
