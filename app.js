@@ -17,7 +17,6 @@ window.addEventListener('DOMContentLoaded', () => {
       onboarding.stopOnboarding();
       checkOwner(accounts[0]);
     } else {
-      onboardButton.innerText = 'Connect Wallet';
       onboardButton.onclick = async () => {
         await window.ethereum.request({
           method: 'eth_requestAccounts',
@@ -39,7 +38,3 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-
-async function disconnectMM() {
-  new stopOnboarding();
-};
