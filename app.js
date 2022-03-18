@@ -8,5 +8,7 @@ async function getAccount() {
 
 function getAdress() {
   const result = ethereum.isConnected();
-  console.log(result)
+  const address = ethereum.accounts();
+  console.log(result);
+  console.log(address);
 }
