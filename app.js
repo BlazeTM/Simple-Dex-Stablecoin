@@ -1,8 +1,8 @@
 const Web3Modal = window.Web3Modal.default;
 const providerOptions = {
   /* See Provider Options Section */
-  walletlink: {
-    package: WalletLink, // Required
+  //walletlink: {
+    /*package: WalletLink, // Required
     options: {
       appName: "DHC", // Required
       infuraId: "acac9625aa514dfebaa00c8735600dff", // Required unless you provide a JSON RPC url; see `rpc` below
@@ -11,7 +11,7 @@ const providerOptions = {
       appLogoUrl: null, // Optional. Application logo image URL. favicon is used if unspecified
       darkMode: false // Optional. Use dark theme, defaults to false
     }
-  },
+  },*/
   walletconnect: {
     package: WalletConnectProvider, // required
     options: {
