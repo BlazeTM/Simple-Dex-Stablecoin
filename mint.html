@@ -6,10 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DHC Mint Site</title>
-
-    <script src="https://cdn.jsdelivr.net/npm/@metamask/onboarding@1.0.1/dist/metamask-onboarding.bundle.js"></script>
     <script src="app.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/@metamask/onboarding@1.0.1/dist/metamask-onboarding.bundle.js"></script>
 </head>
 <body>
     <Header class="row container"> 
@@ -21,7 +19,7 @@
             <ul class="row">
                 <li><a target="_blank" href="https://opensea.io/">Collection</a></li>
                 <li><a target="_blank" href="#">Roadmap</a></li>
-                <li><a class="hero-btn" onclick="walletconnect();"> 
+                <li><a class="hero-btn" id="connectWallet"> 
                     <span>Connect Wallet</span> 
                     </a>
                 </li>
