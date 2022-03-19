@@ -26,6 +26,13 @@ const web3Modal = new Web3Modal({
   providerOptions // required
 });
 
-async function walletconnect() {
-const provider = await web3Modal.connect();
+async function onConnect() {
+
+  console.log("Opening a dialog", web3Modal);
+  try {
+    provider = await web3Modal.connect();
+  } catch(e) {
+    console.log("Could not get a wallet connection", e);
+    return;
+  }
 }
