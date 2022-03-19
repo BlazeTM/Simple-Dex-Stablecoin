@@ -1,4 +1,10 @@
 "use strict";
+
+/**
+ * Example JavaScript code that interacts with the page and Web3 wallets
+ */
+
+ // Unpkg imports
 const Web3Modal = window.Web3Modal.default;
 const WalletConnectProvider = window.WalletConnectProvider.default;
 const Fortmatic = window.Fortmatic;
@@ -25,27 +31,35 @@ function init() {
   console.log("Fortmatic is", Fortmatic);
   console.log("window.web3 is", window.web3, "window.ethereum is", window.ethereum);
 
-  
+  // Check that the web page is run in a secure context,
+  // as otherwise MetaMask won't be available
+  /*if(location.protocol !== 'https:') {
+    // https://ethereum.stackexchange.com/a/62217/620
+    const alert = document.querySelector("#alert-error-https");
+    alert.style.display = "block";
+    document.querySelector("#btn-connect").setAttribute("disabled", "disabled")
+    return;
+  }*/
+
+  // Tell Web3modal what providers we have available.
+  // Built-in web browser provider (only one can exist as a time)
+  // like MetaMask, Brave or Opera is added automatically by Web3modal
   const providerOptions = {
     walletconnect: {
       package: WalletConnectProvider,
       options: {
         // Mikko's test key - don't copy as your mileage may vary
-        infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
+        infuraId: "acac9625aa514dfebaa00c8735600dff",
       }
     },
 
-    walletlink: {
-    package: WalletLink, // Required
-    options: {
-      appName: "DHC", // Required
-      infuraId: "8043bb2cf99347b1bfadfb233c5325c0", // Required unless you provide a JSON RPC url; see `rpc` below
-      rpc: "", // Optional if `infuraId` is provided; otherwise it's required
-      chainId: 1, // Optional. It defaults to 1 if not provided
-      appLogoUrl: null, // Optional. Application logo image URL. favicon is used if unspecified
-      darkMode: false // Optional. Use dark theme, defaults to false
+    fortmatic: {
+      package: Fortmatic,
+      options: {
+        // Mikko's TESTNET api key
+        key: "pk_test_391E26A3B43A3350"
+      }
     }
-  }
   };
 
   web3Modal = new Web3Modal({
