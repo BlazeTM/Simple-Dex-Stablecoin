@@ -1,17 +1,40 @@
-import { ethers } from "ethers";
-import Web3Modal from "web3modal";
+window.addEventListener('DOMContentLoaded', () => {
+  const onboarding = new MetaMaskOnboarding();
+  const onboardButton = document.getElementById('connectWallet');
+  let accounts;
 
-const providerOptions = {
-  /* See Provider Options Section */
-};
+  const updateButton = async () => {
+    if (!MetaMaskOnboarding.isMetaMaskInstalled()) {
+      onboardButton.innerText = 'Install MetaMask!';
+      onboardButton.onclick = () => {
+        onboardButton.innerText = 'Connecting';
+        onboardButton.disabled = true;
+        onboarding.startOnboarding();
+      };
+    } else if (accounts && accounts.length > 0) {
+      onboardButton.innerText = `✔ ${accounts[0]}`;
+      onboardButton.disabled = true;
+      onboarding.stopOnboarding();
+      checkOwner(accounts[0]);
+    } else {
+      onboardButton.onclick = async () => {
+        await window.ethereum.request({
+          method: 'eth_requestAccounts',
+        })
+        .then(function(accounts) {
+          onboardButton.innerText = `✔ ${accounts[0]}`;
+          onboardButton.disabled = true;
+          checkOwner(accounts[0]);
+        });
+      };
+    }
+  };
 
-const web3Modal = new Web3Modal({
-  network: "mainnet", // optional
-  cacheProvider: true, // optional
-  providerOptions // required
+  updateButton();
+  if (MetaMaskOnboarding.isMetaMaskInstalled()) {
+    window.ethereum.on('accountsChanged', (newAccounts) => {
+      accounts = newAccounts;
+      updateButton();
+    });
+  }
 });
-
-const instance = await web3Modal.connect();
-
-const provider = new ethers.providers.Web3Provider(instance);
-const signer = provider.getSigner();
