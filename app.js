@@ -26,6 +26,6 @@ const web3Modal = new Web3Modal({
   providerOptions // required
 });
 
-function walletconnect() {
+async function walletconnect() {
 const provider = await web3Modal.connect();
 }
