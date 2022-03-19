@@ -31,21 +31,21 @@ function init() {
       package: WalletConnectProvider,
       options: {
         // Mikko's test key - don't copy as your mileage may vary
-        infuraId: "acac9625aa514dfebaa00c8735600dff",
+        infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
       }
     },
 
     walletlink: {
-      package: WalletLink, // Required
-      options: {
-        appName: "DHC", // Required
-        infuraId: "acac9625aa514dfebaa00c8735600dff", // Required unless you provide a JSON RPC url; see `rpc` below
-        rpc: "", // Optional if `infuraId` is provided; otherwise it's required
-        chainId: 4, // Optional. It defaults to 1 if not provided
-        appLogoUrl: null, // Optional. Application logo image URL. favicon is used if unspecified
-        darkMode: false // Optional. Use dark theme, defaults to false
-      }
+    package: WalletLink, // Required
+    options: {
+      appName: "DHC", // Required
+      infuraId: "8043bb2cf99347b1bfadfb233c5325c0", // Required unless you provide a JSON RPC url; see `rpc` below
+      rpc: "", // Optional if `infuraId` is provided; otherwise it's required
+      chainId: 1, // Optional. It defaults to 1 if not provided
+      appLogoUrl: null, // Optional. Application logo image URL. favicon is used if unspecified
+      darkMode: false // Optional. Use dark theme, defaults to false
     }
+  }
   };
 
   web3Modal = new Web3Modal({
@@ -124,6 +124,19 @@ async function fetchAccountData() {
  */
 async function refreshAccountData() {
 
+  // If any current data is displayed when
+  // the user is switching acounts in the wallet
+  // immediate hide this data
+  document.querySelector("#connected").style.display = "none";
+  document.querySelector("#prepare").style.display = "block";
+
+  // Disable button while UI is loading.
+  // fetchAccountData() will take a while as it communicates
+  // with Ethereum node via JSON-RPC and loads chain data
+  // over an API call.
+  document.querySelector("#btn-connect").setAttribute("disabled", "disabled")
+  await fetchAccountData(provider);
+  document.querySelector("#btn-connect").removeAttribute("disabled")
 }
 
 
@@ -139,6 +152,23 @@ async function onConnect() {
     console.log("Could not get a wallet connection", e);
     return;
   }
+
+  // Subscribe to accounts change
+  provider.on("accountsChanged", (accounts) => {
+    fetchAccountData();
+  });
+
+  // Subscribe to chainId change
+  provider.on("chainChanged", (chainId) => {
+    fetchAccountData();
+  });
+
+  // Subscribe to networkId change
+  provider.on("networkChanged", (networkId) => {
+    fetchAccountData();
+  });
+
+  await refreshAccountData();
 }
 
 /**
@@ -162,6 +192,9 @@ async function onDisconnect() {
 
   selectedAccount = null;
 
+  // Set the UI back to the initial state
+  document.querySelector("#prepare").style.display = "block";
+  document.querySelector("#connected").style.display = "none";
 }
 
 
