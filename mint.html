@@ -48,35 +48,20 @@
 
     let Web3Provider;
     let Web3Instance;
-    const customNetworkOptions = {
-    rpcUrl: 'https://ethereumnodelight.app.runonflux.io',
-    chainId: 1
-        }
-
     const providerOptions = {
         walletconnect: {
             package: WalletConnectProvider,
             options: {
                 infuraId: "acac9625aa514dfebaa00c8735600dff",
+            },
+        },
+        walletlink: {
+            package: WalletLink, // Required
+            options: {
+            appName: "DHC", // Required
+            infuraId: "acac9625aa514dfebaa00c8735600dff", // Required unless you provide a JSON RPC url; see `rpc` below
             }
         },
-        fortmatic: {
-    package: Fortmatic, // required
-    options: {
-      key: "FORTMATIC_KEY" // required,
-      network: customNetworkOptions // if we don't pass it, it will default to localhost:8454
-    },
-        walletlink: {
-        package: WalletLink, // Required
-        options: {
-        appName: "DHC", // Required
-        infuraId: "acac9625aa514dfebaa00c8735600dff", // Required unless you provide a JSON RPC url; see `rpc` below
-        rpc: "", // Optional if `infuraId` is provided; otherwise it's required
-        chainId: 1, // Optional. It defaults to 1 if not provided
-        appLogoUrl: null, // Optional. Application logo image URL. favicon is used if unspecified
-        darkMode: true // Optional. Use dark theme, defaults to false
-        }
-    },
         /* See Provider Options Section */
     };
 
