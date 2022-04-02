@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DHC Mint Site</title>
+    <meta name="fortmatic-site-verification" content="8OKeQ43rC3rjPQyr" />
     
 </head>
 <body>
@@ -18,7 +19,7 @@
             <ul class="row">
                 <li><a target="_blank" href="https://opensea.io/">Collection</a></li>
                 <li><a target="_blank" href="#">Roadmap</a></li>
-                <li><button class="hero-btn" id="connect-wallet"> Connect Wallet </button>
+                <li><a class="hero-btn" id="connect-wallet"> Connect Wallet </a>
                     <button class="hero-btn" id="disconnect-wallet"> Disconnect Wallet </button>
                     <div id="message"></div>
                 </li>
@@ -47,6 +48,10 @@
 
     let Web3Provider;
     let Web3Instance;
+    const customNetworkOptions = {
+    rpcUrl: 'https://ethereumnodelight.app.runonflux.io',
+    chainId: 1
+        }
 
     const providerOptions = {
         walletconnect: {
@@ -55,6 +60,12 @@
                 infuraId: "acac9625aa514dfebaa00c8735600dff",
             }
         },
+        fortmatic: {
+    package: Fortmatic, // required
+    options: {
+      key: "FORTMATIC_KEY" // required,
+      network: customNetworkOptions // if we don't pass it, it will default to localhost:8454
+    },
         walletlink: {
         package: WalletLink, // Required
         options: {
@@ -64,8 +75,8 @@
         chainId: 1, // Optional. It defaults to 1 if not provided
         appLogoUrl: null, // Optional. Application logo image URL. favicon is used if unspecified
         darkMode: true // Optional. Use dark theme, defaults to false
-    }
-  }
+        }
+    },
         /* See Provider Options Section */
     };
 
