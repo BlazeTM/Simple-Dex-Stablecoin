@@ -38,3 +38,5 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+<script src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@metamask/onboarding@1.0.1/dist/metamask-onboarding.bundle.js"></script>
