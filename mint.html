@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DHC Mint Site</title>
-    <script src="app.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@metamask/onboarding@1.0.1/dist/metamask-onboarding.bundle.js"></script>
+    
 </head>
 <body>
     <Header class="row container"> 
@@ -19,7 +18,10 @@
             <ul class="row">
                 <li><a target="_blank" href="https://opensea.io/">Collection</a></li>
                 <li><a target="_blank" href="#">Roadmap</a></li>
-                <li><a class="hero-btn" id="connect-wallet"> Connect Wallet </a></li>
+                <li><button class="hero-btn" id="connect-wallet"> Connect Wallet </button>
+                    <button class="hero-btn" id="disconnect-wallet"> Disconnect Wallet </button>
+                    <div id="message"></div>
+                </li>
             </ul>
         </nav>
     </Header>
@@ -35,7 +37,7 @@
 <script type="text/javascript" src="https://unpkg.com/web3@1.6.0/dist/web3.min.js"></script>
 <script type="text/javascript" src="https://unpkg.com/web3modal@1.9.4/dist/index.js"></script>
 <script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider@1.6.6/dist/umd/index.min.js"></script>
-<script type="text/javascript" src="/walletlink.bundle.js"></script>
+<script type="text/javascript" src="walletlink.bundle.js"></script>
 
 <script type="text/javascript">
     //  You have to refer to default since it was bundled for ESModules
@@ -50,31 +52,20 @@
         walletconnect: {
             package: WalletConnectProvider,
             options: {
-                infuraId: "f0fd1047ce8742fdb72ae697111b9d64",
+                infuraId: "acac9625aa514dfebaa00c8735600dff",
             }
         },
-        'custom-walletlink': {
-            display: {
-                logo: 'https://play-lh.googleusercontent.com/PjoJoG27miSglVBXoXrxBSLveV6e3EeBPpNY55aiUUBM9Q1RCETKCOqdOkX2ZydqVf0',
-                name: 'Coinbase',
-                description: 'Connect to Coinbase Wallet (not Coinbase App)',
-            },
-            options: {
-                appName: 'Coinbase', // Your app name
-                networkUrl: `https://mainnet.infura.io/v3/f0fd1047ce8742fdb72ae697111b9d64`,
-                chainId: 1,
-            },
-            package: WalletLink,
-            connector: async (_, options) => {
-                const { appName, networkUrl, chainId } = options
-                const walletLink = new WalletLink({
-                    appName,
-                })
-                const provider = walletLink.makeWeb3Provider(networkUrl, chainId)
-                await provider.enable()
-                return provider
-            },
-        },
+        walletlink: {
+        package: WalletLink, // Required
+        options: {
+        appName: "DHC", // Required
+        infuraId: "acac9625aa514dfebaa00c8735600dff", // Required unless you provide a JSON RPC url; see `rpc` below
+        rpc: "", // Optional if `infuraId` is provided; otherwise it's required
+        chainId: 1, // Optional. It defaults to 1 if not provided
+        appLogoUrl: null, // Optional. Application logo image URL. favicon is used if unspecified
+        darkMode: true // Optional. Use dark theme, defaults to false
+    }
+  }
         /* See Provider Options Section */
     };
 
