@@ -29,8 +29,8 @@
             <h6>Mint Now</h6>
             <h1>Our Unique NFT Collection</h1>
             <a onclick="" class="hero-btn">Mint now</a>
-            <label for="quantity">Quantity (between 1 and 5):</label>
-            <input type="number" id="quantity" name="quantity" min="1" max="5">
+            <label for="quantity">Quantity (between 1 and 10):</label>
+            <input type="number" id="quantity" name="quantity" min="1" max="10">
         </div>
     </section>
 
@@ -99,9 +99,6 @@
                 Web3Provider = await web3Modal.connectTo('walletconnect')
             }
         },
-        this.showMessage = function (message) {
-            alert(message)
-        },
         this.showAdresss = function (adresss) {
             document.getElementById("connect-wallet").innerHTML = adresss;
         },
@@ -117,11 +114,6 @@
 
 
             } catch (e) {
-                if (e.code == "4001") {
-                    this.showMessage(e.message)
-                } else {
-                    this.showMessage("Couldn't get the wallet connection")
-                }
                 console.log("Couldn't get a wallet connection")
                 console.log(e)
             }
@@ -187,7 +179,7 @@
 
             // Subscribe to provider disconnection
             Web3Provider.on("disconnect", (error) => {
-                this.showMessage("Disconnected")
+                alert("disconnect")
                 console.log("disconnect");
                 console.log(error);
             });
