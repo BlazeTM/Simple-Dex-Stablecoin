@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DHC Mint Site</title>
-    <meta name="fortmatic-site-verification" content="8OKeQ43rC3rjPQyr" />
-    
+    <title>Mint Site</title>    
 </head>
 <body>
     <Header class="row container"> 
@@ -18,9 +16,8 @@
         <nav class="navigation row">
             <ul class="row">
                 <li><a target="_blank" href="https://opensea.io/">Collection</a></li>
-                <li><a target="_blank" href="#">Roadmap</a></li>
                 <li><a class="hero-btn" id="connect-wallet"> Connect Wallet </a>
-                    <button class="hero-btn" id="disconnect-wallet"> Disconnect Wallet </button>
+                    <a class="hero-btn" id="disconnect-wallet"> Disconnect Wallet </a>
                     <div id="message"></div>
                 </li>
             </ul>
@@ -32,13 +29,15 @@
             <h6>Mint Now</h6>
             <h1>Our Unique NFT Collection</h1>
             <a onclick="" class="hero-btn">Mint now</a>
+            <label for="quantity">Quantity (between 1 and 5):</label>
+            <input type="number" id="quantity" name="quantity" min="1" max="5">
         </div>
     </section>
 
 <script type="text/javascript" src="https://unpkg.com/web3@1.6.0/dist/web3.min.js"></script>
 <script type="text/javascript" src="https://unpkg.com/web3modal@1.9.4/dist/index.js"></script>
 <script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider@1.6.6/dist/umd/index.min.js"></script>
-<script type="text/javascript" src="walletlink.bundle.js"></script>
+
 
 <script type="text/javascript">
     //  You have to refer to default since it was bundled for ESModules
@@ -55,13 +54,13 @@
                 infuraId: "acac9625aa514dfebaa00c8735600dff",
             },
         },
-        walletlink: {
+        /*walletlink: {
             package: WalletLink, // Required
             options: {
             appName: "DHC", // Required
             infuraId: "acac9625aa514dfebaa00c8735600dff", // Required unless you provide a JSON RPC url; see `rpc` below
             }
-        },
+        },*/
         /* See Provider Options Section */
     };
 
@@ -75,6 +74,7 @@
 <script>
 
     const WalletConnector = function (messageBox, connectWalletButton, disconnectWalletButton) {
+        document.getElementById("connect-wallet").innerHTML = "Connect Wallet";
         this.messageBox = messageBox ? messageBox : document.getElementById('message'),
         this.connectWalletButton = connectWalletButton ? connectWalletButton : document.getElementById('connect-wallet'),
         this.disconnectWalletButton = disconnectWalletButton ? disconnectWalletButton : document.getElementById('disconnect-wallet'),
@@ -100,8 +100,12 @@
             }
         },
         this.showMessage = function (message) {
-            this.messageBox.innerText = message
+            alert(message)
         },
+        this.showAdresss = function (adresss) {
+            document.getElementById("connect-wallet").innerHTML = adresss;
+        },
+
         this.connectWallet = async function () {
             try {
 
@@ -109,7 +113,7 @@
                 this.account = await this.fetchAccountData()
 
                 this.walletConnected = true
-                this.showMessage("Here's your Wallet: " + this.account)
+                this.showAdresss(this.account)
 
 
             } catch (e) {
@@ -129,6 +133,7 @@
             // Try to close the web3 session 
             try {
                 await Web3Provider.close()
+                document.getElementById("connect-wallet").innerHTML = "Connect Wallet";
             } catch (e) {
                 console.log(e)
             }
@@ -136,6 +141,7 @@
             // Also clear the cacheProvider so it asks for wallet options again, instead of asking the login of previous provider
             try {
                 await web3Modal.clearCachedProvider();
+                document.getElementById("connect-wallet").innerHTML = "Connect Wallet";
             } catch (e) {
                 console.log(e)
             }
