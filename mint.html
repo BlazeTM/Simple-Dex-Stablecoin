@@ -9,8 +9,8 @@
 </head>
 <body>
     <Header class="row container"> 
-        <a href="#" class="logo">
-            logo
+        <a href="index.html" class="logo">
+            Hype Hamsters
         </a>
         <div class="toggleMenu" onclick="toggleMenu();"></div>
         <nav class="navigation row">
@@ -27,9 +27,9 @@
     <section class="hero row container">
         <div>
             <h6>Mint Now</h6>
-            <h1>Our Unique NFT Collection</h1>
+            <h1>Our Unique NFT Collection 10k limited nfts</h1>
             <a onclick="" class="hero-btn">Mint now</a>
-            <label for="quantity">Quantity (between 1 and 10):</label>
+            <label for="quantity" onclick="buttonMint();">Quantity (between 1 and 10):</label>
             <input type="number" id="quantity" name="quantity" min="1" max="10">
         </div>
     </section>
@@ -185,6 +185,67 @@
             });
 
         }
+        var abi = [
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+];
+    function buttonMint(){
+        var MyContract = new web3.eth.Contract( abi, '0x9240aCC4aEA5c020a9EDdEf5859E0066242EE0E6');
+        myContract.methods.myMethod(mintAllowList).send({
+            from: this.account,
+            value: 123000000000000000,
+        });
+    };
     }
 
     let walletConnector = new WalletConnector()
