@@ -59,7 +59,7 @@
             let value = document.getElementById('quantity').value;
             const price = 123000000000000000;
             const totalPrice = value * price;
-            contract.methods.mintAllowList(1).send({ from: account, value: toString(totalPrice)})
+            contract.methods.mintAllowList(value).send({ from: account, value: toString(totalPrice)})
         }
         
         }
