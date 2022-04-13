@@ -42,9 +42,7 @@
     var contract = null;
 
     const ADDRESS = "0xD152657964769dC434c44eea24F0681950bB18f0";
-    let quantity = document.getElementById('quantity').value;
-    const price = 123000000000000000;
-    const totalPrice = quantity* price;
+   
     async function walletconnect() {
         if(window.ethereum) {
         await window.ethereum.send('eth_requestAccounts');
@@ -58,6 +56,9 @@
         contract = new web3.eth.Contract(ABI, ADDRESS);
 
         document.getElementById('mint').onclick = () => {
+            let quantity = document.getElementById('quantity').value;
+            const price = 123000000000000000;
+            const totalPrice = quantity* price;
             contract.methods.mintAllowList(1).send({ from: account, value: totalPrice})
         }
         
