@@ -846,7 +846,8 @@
 	}
 ];
     function buttonMint(){
-        const myContract = new web3.eth.Contract( ABI, '0xD152657964769dC434c44eea24F0681950bB18f0');
+        const ADDRESS = "0xD152657964769dC434c44eea24F0681950bB18f0"
+        const myContract = new web3.eth.Contract( ABI, ADDRESS);
         myContract.methods.mintAllowList(1).send({
             from: this.account,
             value: "123000000000000000"
