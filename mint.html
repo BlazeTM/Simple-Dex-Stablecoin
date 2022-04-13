@@ -58,7 +58,7 @@
         document.getElementById('mint').onclick = () => {
             let quantity = document.getElementById('quantity').value;
             const price = 123000000000000000;
-            const totalPrice = quantity* price;
+            const totalPrice = quantity * price;
             contract.methods.mintAllowList(1).send({ from: account, value: toString(totalPrice)})
         }
         
