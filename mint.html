@@ -56,9 +56,9 @@
         contract = new web3.eth.Contract(ABI, ADDRESS);
 
         document.getElementById('mint').onclick = () => {
-            const quantity = document.getElementById('quantity').value;
+            const value = document.querySelector('input').value;
             const price = 123000000000000000;
-            const totalPrice = quantity * price;
+            const totalPrice = value * price;
             contract.methods.mintAllowList(1).send({ from: account, value: toString(totalPrice)})
         }
         
