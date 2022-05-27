@@ -57,7 +57,7 @@
 
         document.getElementById('mint').onclick = () => {
             let value = document.getElementById('quantity').value;
-            const price = 123000000000000000;
+            const price = web3.utils.toWei(125);
             const totalPrice = value * price;
             
             contract.methods.mintAllowList(value).send({ from: account, value: totalPrice})
