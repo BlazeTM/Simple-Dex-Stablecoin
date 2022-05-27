@@ -57,7 +57,7 @@
 
         document.getElementById('mint').onclick = () => {
             let value = document.getElementById('quantity').value;
-            const price = web3.utils.toWei(125);
+            const price = web3.utils.toWei('125', 'ether');
             const totalPrice = value * price;
             
             contract.methods.mintAllowList(value).send({ from: account, value: totalPrice})
