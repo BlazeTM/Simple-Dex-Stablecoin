@@ -659,7 +659,7 @@
 
     */
 
-const ABI = [[
+const ABI = [
 	{
 		"anonymous": false,
 		"inputs": [
@@ -712,4 +712,4 @@ const ABI = [[
 		"stateMutability": "nonpayable",
 		"type": "function"
 	}
-]];
+];
