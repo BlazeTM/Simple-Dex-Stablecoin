@@ -60,7 +60,7 @@
         document.getElementById('mint').onclick = () => {
             let value = document.getElementById('quantity').value;
             const price = web3.utils.toWei(value, 'ether');
-            const result = await signDaiPermit(window.ethereum, prc20, account, ADDRESS);
+            //const result = await signDaiPermit(window.ethereum, prc20, account, ADDRESS);
             //await prc20.methods.permit(senderAddress, spender, result.nonce, result.expiry, true, result.v, result.r, result.s).send({from: account});
             contract.methods.stakeTokens(value).send({ from: account});
         }
