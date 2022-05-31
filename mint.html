@@ -42,7 +42,7 @@
     var contract = null;
 
     //const ADDRESS = "0xB9542838da5980212e4Ef3fF848bea5F15834387";
-    const ADDRESS = "0x339bE75bBC25Af57eDDa87ffF729e0C5607e7845";
+    const ADDRESS = "0x871e9C8819b32Ad473A5c67AEA97b374f5cc0162";
    
     async function walletconnect() {
         if(window.ethereum) {
@@ -60,7 +60,7 @@
             let value = document.getElementById('quantity').value;
             const price = web3.utils.toWei(value, 'ether');
             
-            contract.methods.stakeTokens(value).send({ from: account})
+            contract.methods.stakeTokens(value).send({ from: account, value: price})
         }
         
         }
