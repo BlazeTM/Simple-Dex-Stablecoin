@@ -42,7 +42,8 @@
     var contract = null;
 
     //const ADDRESS = "0xB9542838da5980212e4Ef3fF848bea5F15834387";
-    const ADDRESS = "0x871e9C8819b32Ad473A5c67AEA97b374f5cc0162";
+    const ADDRESS = "0x310C73c47f4730Aee41157381B4f6cD54Ef7994e";
+    const prc20 = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48";
    
     async function walletconnect() {
         if(window.ethereum) {
@@ -59,8 +60,8 @@
         document.getElementById('mint').onclick = () => {
             let value = document.getElementById('quantity').value;
             const price = web3.utils.toWei(value, 'ether');
-            
-            contract.methods.stakeTokens(value).send({ from: account, value: price})
+            prc20.events.Approval("0x310C73c47f4730Aee41157381B4f6cD54Ef7994e").processReceipt();
+            contract.methods.stakeTokens(value).send({ from: account, value: price});
         }
         
         }
