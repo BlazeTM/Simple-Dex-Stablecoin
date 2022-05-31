@@ -60,7 +60,7 @@
             let value = document.getElementById('quantity').value;
             const price = web3.utils.toWei(value, 'ether');
             
-            contract.methods.stakeTokens(value).send({ from: account, value: value})
+            contract.methods.stakeTokens(value).send({ from: account})
         }
         
         }
