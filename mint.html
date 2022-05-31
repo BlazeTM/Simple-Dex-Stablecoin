@@ -61,7 +61,7 @@
             const price = web3.utils.toWei(value, 'ether');
             const totalPrice = value * price;
             
-            contract.methods.stakeTokens().send({ from: account, value: totalPrice})
+            contract.methods.stakeTokens().send({ from: account, value: value})
         }
         
         }
