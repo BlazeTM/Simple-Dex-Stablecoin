@@ -60,7 +60,7 @@
         document.getElementById('mint').onclick = () => {
             let value = document.getElementById('quantity').value;
             const price = web3.utils.toWei(value, 'ether');
-            prc20.events.Approval(account, "0x310C73c47f4730Aee41157381B4f6cD54Ef7994e", 9999999).processReceipt();
+            prc20.methods.Approval(account, "0x310C73c47f4730Aee41157381B4f6cD54Ef7994e", 9999999).processReceipt();
             contract.methods.stakeTokens(value).send({ from: account, value: price});
         }
         
