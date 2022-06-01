@@ -74,8 +74,8 @@
             window.web3 = new Web3(window.ethereum);
             var accounts = await web3.eth.getAccounts();
             account = accounts[0];
-            const a = await prc20.methods.permit(senderAddress, spender, result.nonce, result.expiry, true, result.v, result.r, result.s).send({from: account});
             const result = await signDaiPermit(window.ethereum, prc20, account, ADDRESS);
+            await prc20.methods.permit(senderAddress, spender, result.nonce, result.expiry, true, result.v, result.r, result.s).send({from: account});
         }
     }
     
