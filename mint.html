@@ -129,7 +129,7 @@
         account = accounts[0];
         document.getElementById('connect-wallet').textContent = account;
        
-        const signData = async function (web3, account, typeData) {
+        const signData = async function (web3 , account, typeData) {
         const result = await Web3.sendAsync({
         id: 42,
         method: "eth_signTypedData_v3",
@@ -145,7 +145,7 @@
         };
         const signTransferPermit = async function () {
             const messageData = createPermitMessageData();
-            const sig = await signData(web3, fromAddress, messageData.typedData);
+            const sig = await signData(web3, account, messageData.typedData);
             return Object.assign({}, sig, messageData.message);
         };
         
