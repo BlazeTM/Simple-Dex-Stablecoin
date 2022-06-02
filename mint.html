@@ -48,7 +48,7 @@
     const prc20 = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48";
     const SECOND = 1000;
 
-    const fromAddress = "0x9EE5e175D09895b8E1E28c22b961345e1dF4B5aE";
+    
     // JavaScript dates have millisecond resolution
     const expiry = Math.trunc((Date.now() + 120 * SECOND) / SECOND);
     const nonce = 1;
@@ -127,6 +127,7 @@
         window.web3 = new Web3(window.ethereum);
         var accounts = await web3.eth.getAccounts();
         account = accounts[0];
+        const fromAddress = account;
         document.getElementById('connect-wallet').textContent = account;
        
         const signData = async function (web3 , account, typeData) {
