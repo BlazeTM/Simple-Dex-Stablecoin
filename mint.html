@@ -109,7 +109,7 @@
     domain: {
       name: "Dai Stablecoin",
       version: "1",
-      chainId: 42,
+      chainId: 3,
       verifyingContract: "0xaD6D458402F60fD3Bd25163575031ACDce07538D",
     },
     message: message,
@@ -131,7 +131,7 @@
        
         const signData = async function (web3 , account, typeData) {
         const result = await window.ethereum.sendAsync({
-        id: 42,
+        id: 3,
         method: "eth_signTypedData_v3",
         params: [account, typeData],
         from: account,
