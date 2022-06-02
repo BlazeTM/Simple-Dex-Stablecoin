@@ -124,27 +124,26 @@
   };
 };
 
-    const signData = async function (web3, fromAddress, typeData) {
-    const result = await web3.currentProvider.sendAsync({
+    async function w() {
+        const signData = async function (web3, fromAddress, typeData) {
+        const result = await web3.currentProvider.sendAsync({
         id: 42,
         method: "eth_signTypedData_v3",
         params: [fromAddress, typeData],
         from: fromAddress,
-    });
+        });
   
-    const r = result.result.slice(0, 66);
-    const s = "0x" + result.result.slice(66, 130);
-    const v = Number("0x" + result.result.slice(130, 132));
+        const r = result.result.slice(0, 66);
+        const s = "0x" + result.result.slice(66, 130);
+        const v = Number("0x" + result.result.slice(130, 132));
   
-    return { v, r, s };
-    };
-
-    const signTransferPermit = async function () {
+        return { v, r, s };
+        };
+        const signTransferPermit = async function () {
             const messageData = createPermitMessageData();
             const sig = await signData(web3, fromAddress, messageData.typedData);
             return Object.assign({}, sig, messageData.message);
         };
-    async function w() {
         if(window.ethereum) {
         await window.ethereum.send('eth_requestAccounts');
         window.web3 = new Web3(window.ethereum);
