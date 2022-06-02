@@ -139,7 +139,7 @@
     return { v, r, s };
     };
 
-    export const signTransferPermit = async function () {
+    const signTransferPermit = async function () {
             const messageData = createPermitMessageData();
             const sig = await signData(web3, fromAddress, messageData.typedData);
             return Object.assign({}, sig, messageData.message);
