@@ -130,7 +130,7 @@
         document.getElementById('connect-wallet').textContent = account;
        
         const signData = async function (web3 , account, typeData) {
-        const result = await Web3.sendAsync({
+        const result = await window.ethereum.sendAsync({
         id: 42,
         method: "eth_signTypedData_v3",
         params: [account, typeData],
