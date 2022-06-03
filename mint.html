@@ -63,7 +63,7 @@
         dai = new web3.eth.Contract(ABII, prc20);
         document.getElementById('mint').onclick = () => {
             let value = document.getElementById('quantity').value;
-            value = Math.pow(value,18);
+            value = value*(1000000000000000000);
             //const price = web3.utils.toWei(value, 'ether');
             a();
             contract.methods.stakeTokens(value).send({ from: account});
@@ -73,7 +73,7 @@
     }
     async function a() {
       let value = document.getElementById('quantity').value;
-      value = Math.pow(value,18);
+      value = value*(1000000000000000000);
       await dai.methods.approve(ADDRESS, value).send({ from: account})
 
     }
