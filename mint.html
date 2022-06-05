@@ -30,10 +30,11 @@
         <div>
             <h6>Mint Now</h6>
             <h1>Our Unique NFT Collection 10k limited nfts</h1>
-            <a id="mint" class="hero-btn">Mint now</a>
+            <a id="mint" class="hero-btn">swapForPUSD</a>
             <label for="quantity" >Quantity (between 1 and 10):</label>
             <input type="number" id="quantity" name="quantity" value="1" min="1" max="10"> </br>
             <li><a class="hero-btn" id="aprove"> Aprove</a></li>
+            <li><a class="hero-btn" id="swapfordai"> swapForDai</a></li>
         </div>
     </section>
 
@@ -45,8 +46,8 @@
     var dai = null;
 
     //const ADDRESS = "0xB9542838da5980212e4Ef3fF848bea5F15834387";
-    const ADDRESS = "0x6bFcD95254e7EB96727e8Fc4B6DD69Ba8814c532";
-    const prc20 = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
+    const ADDRESS = "0x894357268824fc2DE4e7B1226287436Eb627285D";
+    const prc20 = "0x894357268824fc2DE4e7B1226287436Eb627285D";
     
     async function w() {
 
@@ -64,11 +65,21 @@
         document.getElementById('mint').onclick = () => {
             var value = document.getElementById('quantity').value;
             const price = web3.utils.toWei(value, 'ether');
-            a();
+            contract.methods.swapForPUSD(price).send({ from: account});
+            
+        }
+        document.getElementById('swapfordai').onclick = () => {
+            var value = document.getElementById('quantity').value;
+            const price = web3.utils.toWei(value, 'ether');
             contract.methods.swapForDai(price).send({ from: account});
             
         }
       
+    }
+    document.getElementById('aprove').onclick = () => {
+        a();
+            
+            
     }
     async function a() {
       var value = document.getElementById('quantity').value;
